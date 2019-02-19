@@ -1,0 +1,10 @@
+Take a look at the other tokenizing options that nltk provides here. 
+For example, you can define a tokenizer that picks out sequences of 
+alphanumeric characters as tokens and drops everything else:
+
+from nltk.tokenize import RegexpTokenizer
+tokenizer = RegexpTokenizer(r'\w+')
+tokenizer.tokenize('Eighty-seven miles to go, yet.  Onward!')
+
+Output:
+['Eighty', 'seven', 'miles', 'to', 'go', 'yet', 'Onward']
