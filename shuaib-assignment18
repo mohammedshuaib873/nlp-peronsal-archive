@@ -1,0 +1,16 @@
+This is my string:
+
+(｡･ω･｡)ﾉ
+I don't see what's going wrong, any idea?
+
+Edit: The problem is that printing the string as it is does not show properly. Also, this error when I try to convert it:
+
+Python 2.7.1+ (r271:86832, Apr 11 2011, 18:13:53)
+[GCC 4.5.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> s = '(\xef\xbd\xa1\xef\xbd\xa5\xcf\x89\xef\xbd\xa5\xef\xbd\xa1)\xef\xbe\x89'
+>>> s1 = s.decode('utf-8')
+>>> print s1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 1-5: ordinal not in range(128)

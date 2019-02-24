@@ -1,0 +1,11 @@
+Now that we have a proper NLTK chunker, we can use it to extract chunks. 
+Here’s a simple example that tags a sentence, chunks the tagged sentence, 
+then prints out each noun phrase.
+
+# sentence should be a list of words
+tagged = tagger.tag(sentence)
+tree = chunker.parse(tagged)
+# for each noun phrase sub tree in the parse tree
+for subtree in tree.subtrees(filter=lambda t: t.node == 'NP'):
+    # print the noun phrase as a list of part-of-speech tagged words
+    print subtree.leaves()

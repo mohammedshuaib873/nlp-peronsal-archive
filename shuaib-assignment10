@@ -1,7 +1,6 @@
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 stopwords = set(STOPWORDS)
-
 def show_wordcloud(data, title = None):
     wordcloud = WordCloud(
         background_color='white',
@@ -20,6 +19,6 @@ def show_wordcloud(data, title = None):
 
     plt.imshow(wordcloud)
     plt.show()
-
+     
 show_wordcloud(Samsung_Reviews_Negative['Reviews'])
 show_wordcloud(Samsung_Reviews_positive['Reviews'])

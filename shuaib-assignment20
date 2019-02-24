@@ -1,0 +1,35 @@
+To do so, install Java JRE 8 or higher. You can install Java JDK (developer kit) if you want because it contains JRE. For Linux users, you will find all needed information on this guide on How To Install Java with Apt-Get on Ubuntu 16.04. For other users, please have a look at Java official documentation.
+
+Once installed, make sure your $JAVA_HOME environment is set:
+
+echo $JAVA_HOME
+Mine is /user/lib/jvm/java-8-oracle . That’s it for Java!
+
+If you haven’t done it yet, create a virtual environment to work on:
+
+mkvirtualenv .venv-ner --python=/usr/bin/python3
+workon .venv-ner
+Download NLTK:
+
+pip install nltk
+Get Stanford NER Tagger. Download zip file stanford-ner-xxxx-xx-xx.zip: see ‘Download’ section from The Stanford NLP website.
+
+Unzip it and move ner-tagger ner-tagger.jar and gzipped English model english.all.3class.distsim.crf.ser.gz to your application folder:
+
+cd /home/charles/Downloads/
+unzip stanford-ner-2017-06-09.zip
+mv stanford-ner-2017-06-09/ner-tagger.jar {yourAppFolder}/stanford-ner-tagger/ner-tagger.jar
+mv stanford-ner-2017-06-09/classifiers/english.all.3class.distsim.crf.ser.gz {yourAppFolder}/stanford-ner-tagger/ner-model-english.ser.gz
+We now have two files in our stanford-ner-tagger folder:
+
+ner-tagger.jar: NER tagger engine properly said ;
+ner-model-english.ser.gz : NER model trained on an english corpus.gi
+Copy the following ner_english.py script to perform english Named Entities Recognition:
+
+
+Run it:
+
+python ner_english.py
+Output should be:
+
+[('Twenty', 'O'), ('miles', 'O'), ('east', 'O'), ('of', 'O'), ('Reno', 'ORGANIZATION'), (',', 'O'), ('Nev.', 'LOCATION'), (',', 'O'), ('where', 'O'), ('packs', 'O'), ('of', 'O'), ('wild', 'O'), ('mustangs', 'O'), ('roam', 'O'), ('free', 'O'), ('through', 'O'), ('the', 'O'), ('parched', 'O'), ('landscape', 'O'), (',', 'O'), ('Tesla', 'ORGANIZATION'), ('Gigafactory', 'ORGANIZATION'), ('1', 'ORGANIZATION'), ('sprawls', 'O'), ('near', 'O'), ('Interstate', 'LOCATION'), ('80', 'LOCATION'), ('.', 'O'), ('The', 'O'), ('Gigafactory', 'O'), (',', 'O'), ('whose', 'O'), ('construction', 'O'), ('began', 'O'), ('in', 'O'), ('June', 'DATE'), ('2014', 'DATE'), (',', 'O'), ('is', 'O'), ('not', 'O'), ('only', 'O'), ('outrageously', 'O'), ('large', 'O'), ('but', 'O'), ('also', 'O'), ('on', 'O'), ('its', 'O'), ('way', 'O'), ('to', 'O'), ('becoming', 'O'), ('the', 'O'), ('biggest', 'O'), ('manufacturing', 'O'), ('plant', 'O'), ('on', 'O'), ('earth', 'O'), ('.', 'O'), ('Now', 'O'), ('30', 'PERCENT'), ('percent', 'PERCENT'), ('complete', 'O'), (',', 'O'), ('its', 'O'), ('square', 'O'), ('footage', 'O'), ('already', 'O'), ('equals', 'O'), ('about', 'O'), ('35', 'O'), ('Costco', 'ORGANIZATION'), ('stores', 'O'), ('.', 'O')]

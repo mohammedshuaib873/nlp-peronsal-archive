@@ -1,0 +1,47 @@
+From the code, http://www.nltk.org/_modules/nltk/data.html:
+
+``nltk:path``: Specifies the file stored in the NLTK data
+ package at *path*.  NLTK will search for these files in the
+ directories specified by ``nltk.data.path``.
+Then within the code:
+
+######################################################################
+# Search Path
+######################################################################
+
+path = []
+"""A list of directories where the NLTK data package might reside.
+   These directories will be checked in order when looking for a
+   resource in the data package.  Note that this allows users to
+   substitute in their own versions of resources, if they have them
+   (e.g., in their home directory under ~/nltk_data)."""
+
+# User-specified locations:
+path += [d for d in os.environ.get('NLTK_DATA', str('')).split(os.pathsep) if d]
+if os.path.expanduser('~/') != '~/':
+    path.append(os.path.expanduser(str('~/nltk_data')))
+
+if sys.platform.startswith('win'):
+    # Common locations on Windows:
+    path += [
+        str(r'C:\nltk_data'), str(r'D:\nltk_data'), str(r'E:\nltk_data'),
+        os.path.join(sys.prefix, str('nltk_data')),
+        os.path.join(sys.prefix, str('lib'), str('nltk_data')),
+        os.path.join(os.environ.get(str('APPDATA'), str('C:\\')), str('nltk_data'))
+    ]
+else:
+    # Common locations on UNIX & OS X:
+    path += [
+        str('/usr/share/nltk_data'),
+        str('/usr/local/share/nltk_data'),
+        str('/usr/lib/nltk_data'),
+        str('/usr/local/lib/nltk_data')
+    ]
+To modify the path, simply append to the list of possible paths:
+
+import nltk
+nltk.data.path.append("/home/yourusername/whateverpath/")
+Or in windows:
+
+import nltk
+nltk.data.path.append("C:\somewhere\farfar\away\path")
